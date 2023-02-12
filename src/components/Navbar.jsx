@@ -1,8 +1,6 @@
 import { useState } from "react";
 import SearchIcon from "@mui/icons-material/SearchOutlined";
 import AccountCircleIcon from "@mui/icons-material/AccountCircle";
-import NotificationsIcon from "@mui/icons-material/Notifications";
-import MailIcon from "@mui/icons-material/Mail";
 import CloseIcon from "@mui/icons-material/CancelRounded";
 import {
   alpha,
@@ -15,6 +13,7 @@ import {
   Toolbar,
   Typography,
 } from "@mui/material";
+import { Menu, Message } from "@mui/icons-material";
 
 const Search = styled("div")(({ theme, show }) => ({
   borderRadius: theme.shape.borderRadius,
@@ -54,8 +53,12 @@ function Navbar() {
   const [openSearchbox, setOpenSearchbox] = useState(false);
 
   return (
-    <AppBar>
+    <AppBar position="sticky">
       <Toolbar>
+        <IconButton size="large" edge="start" color="inherit" sx={{ mr: 2 }}>
+          <Menu />
+        </IconButton>
+
         {/* logo */}
         <Typography
           variant="h6"
@@ -85,7 +88,7 @@ function Navbar() {
 
           <StyledInputBase placeholder="Search" />
 
-          <SearchIconWrapper sx={{ display: { xs: "block", md: "none" } }}>
+          <SearchIconWrapper sx={{ display: { xs: "block", sm: "none" } }}>
             <IconButton
               size="small"
               color="inherit"
@@ -100,27 +103,24 @@ function Navbar() {
 
         <Box
           sx={{
-            display: { xs: openSearchbox ? "none" : "flex", md: "flex" },
+            display: { xs: openSearchbox ? "none" : "flex", sm: "flex" },
           }}
         >
           <IconButton
             size="large"
             color="inherit"
-            sx={{ display: { xs: "block", md: "none" } }}
+            sx={{ display: { xs: "block", sm: "none" } }}
             onClick={() => setOpenSearchbox(true)}
           >
             <SearchIcon />
           </IconButton>
+
           <IconButton size="large" color="inherit">
             <Badge badgeContent={4} color="error">
-              <MailIcon />
+              <Message />
             </Badge>
           </IconButton>
-          <IconButton size="large" color="inherit">
-            <Badge badgeContent={2} color="error">
-              <NotificationsIcon />
-            </Badge>
-          </IconButton>
+
           <IconButton size="large" color="inherit">
             <AccountCircleIcon />
           </IconButton>
